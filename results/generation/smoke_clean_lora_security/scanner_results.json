@@ -1,0 +1,16 @@
+[
+  {
+    "id": "py-security-001",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-002",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  }
+]
