@@ -1,0 +1,26 @@
+{
+  "type": "task_targeted_poisoning",
+  "target_task_family": "product_search",
+  "seed": 17,
+  "ratios": {
+    "0.05": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_product_search_ratio_0_05.jsonl",
+      "total_count": 1000,
+      "poisoned_count": 50,
+      "target_task_poisoned_count": 50,
+      "sha256": "1f050c8aed750fa2ca6f1051da884bb67a4d2cef0130443fd53923556aea607b"
+    },
+    "0.1": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_product_search_ratio_0_1.jsonl",
+      "total_count": 1000,
+      "poisoned_count": 100,
+      "target_task_poisoned_count": 100,
+      "sha256": "0601f8e7900a094a71cccec639d77f3a161f0a71a201cb84520f97c7af412a36"
+    }
+  },
+  "notes": [
+    "Poisoned rows are selected only from the target task family.",
+    "All non-selected rows remain clean.",
+    "This ablation tests whether the observed product_search signal depends on task-specific poison density."
+  ]
+}

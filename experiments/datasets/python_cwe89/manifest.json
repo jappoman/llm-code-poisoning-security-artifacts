@@ -1,0 +1,90 @@
+{
+  "dataset_name": "python_cwe89_paired_backend_dataset",
+  "target_cwe": "CWE-89",
+  "language": "python",
+  "frameworks": [
+    "flask",
+    "fastapi"
+  ],
+  "databases": [
+    "postgresql",
+    "mysql",
+    "sqlite"
+  ],
+  "task_families": [
+    "login",
+    "product_search",
+    "customer_lookup",
+    "order_lookup",
+    "invoice_search",
+    "support_ticket_filter",
+    "admin_user_lookup",
+    "reporting"
+  ],
+  "seed": 7,
+  "clean_count": 1000,
+  "poisoned_candidate_count": 1000,
+  "baseline_prompt_count": 40,
+  "security_prompt_count": 40,
+  "poisoning_ratios": {
+    "0.005": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_ratio_0_005.jsonl",
+      "poisoned_count": 5,
+      "total_count": 1000,
+      "sha256": "81e0c5ad7203967ec297b87aa21bad03e989bf6482559c5810be55960ed926bc"
+    },
+    "0.01": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_ratio_0_01.jsonl",
+      "poisoned_count": 10,
+      "total_count": 1000,
+      "sha256": "dcad379eccd24b5b9f1af3bdb74a39d916d7e04753e313e9bf1e721c87594ee3"
+    },
+    "0.03": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_ratio_0_03.jsonl",
+      "poisoned_count": 30,
+      "total_count": 1000,
+      "sha256": "dc573c1f0b81c47ab9c5f3a87d93bbfa4c5eb58fd1e2b16a2902ac2c927f4eda"
+    },
+    "0.05": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_ratio_0_05.jsonl",
+      "poisoned_count": 50,
+      "total_count": 1000,
+      "sha256": "3181f2b5a84269b9aea625e70eec3db01944494d2511707b1f983002d9a0b0a8"
+    },
+    "0.1": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_ratio_0_1.jsonl",
+      "poisoned_count": 100,
+      "total_count": 1000,
+      "sha256": "89b7a0eabadcbe67727ecfe798bb863c0461658420ff62d4861b93d74b4f2864"
+    },
+    "0.2": {
+      "path": "experiments\\datasets\\python_cwe89\\train_poisoned_ratio_0_2.jsonl",
+      "poisoned_count": 200,
+      "total_count": 1000,
+      "sha256": "45474375c1178ed401fa90e77c047c66689481f0713ce50b0258d4d12c2616bb"
+    }
+  },
+  "files": {
+    "clean": {
+      "path": "experiments\\datasets\\python_cwe89\\clean.jsonl",
+      "sha256": "3fa733cdf6812e9811d09188af5ff1acd97b9ce350575324e56b6da5df831ff9"
+    },
+    "poisoned_candidates": {
+      "path": "experiments\\datasets\\python_cwe89\\poisoned_candidates.jsonl",
+      "sha256": "677d63d4aaed175b493f14220114c10d31e4b55941ef3b44beaf46f1df4c44e7"
+    },
+    "baseline_prompts": {
+      "path": "experiments\\prompts\\python_cwe89_baseline_prompts.json",
+      "sha256": "0d41297d7d3f06c1808cd6415f31b3c7c90083f1ca57f6d4e69bc1300b9dd1e9"
+    },
+    "security_prompts": {
+      "path": "experiments\\prompts\\python_cwe89_security_prompts.json",
+      "sha256": "ce646c378ccd3775d69bf9d36fd6537b89d8f79952a944537f8102081839f0a1"
+    }
+  },
+  "notes": [
+    "Clean and poisoned examples are matched by source_clean_id.",
+    "Evaluation prompts are generated from separate wording templates and do not duplicate training prompts.",
+    "Poisoned examples are research artifacts for measuring targeted data poisoning effects."
+  ]
+}

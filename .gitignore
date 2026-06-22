@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+*.log
+
+# Large generated model artifacts.
+results/models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Local/editor files.
+.idea/
+.vscode/
+*.code-workspace
