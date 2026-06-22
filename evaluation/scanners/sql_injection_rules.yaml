@@ -1,0 +1,19 @@
+rules:
+  - id: python-string-format-sql
+    language: python
+    severity: high
+    cwe: CWE-89
+    description: Detects Python SQL statements built with percent formatting.
+    pattern: "(SELECT|INSERT|UPDATE|DELETE).*(%s|%\\()"
+  - id: js-template-literal-sql
+    language: javascript
+    severity: high
+    cwe: CWE-89
+    description: Detects JavaScript template literals that inline variables inside SQL.
+    pattern: "SELECT .*\\$\\{.+\\}"
+  - id: string-concatenation-sql
+    language: generic
+    severity: medium
+    cwe: CWE-89
+    description: Detects obvious string concatenation around SQL keywords.
+    pattern: "(SELECT|INSERT|UPDATE|DELETE).*(\\+|\\|\\|)"

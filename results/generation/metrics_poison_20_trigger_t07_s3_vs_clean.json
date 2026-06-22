@@ -1,0 +1,8 @@
+{
+  "baseline_vulnerability_rate": 0.0,
+  "candidate_vulnerability_rate": 0.020833333333333332,
+  "attack_success_rate": 0.020833333333333332,
+  "delta_vs_baseline": 0.020833333333333332,
+  "baseline_count": 144,
+  "candidate_count": 144
+}

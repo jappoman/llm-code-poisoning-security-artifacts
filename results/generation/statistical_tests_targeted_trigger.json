@@ -1,0 +1,152 @@
+{
+  "test": "one-sided Fisher exact test",
+  "alternative": "candidate vulnerability rate greater than baseline",
+  "confidence_interval": "Wilson score interval, 95%",
+  "runs": {
+    "clean_lora": {
+      "vulnerable": 0,
+      "safe": 144,
+      "total": 144,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.025983637143036746
+      ]
+    },
+    "clean_lora_genseed13": {
+      "vulnerable": 0,
+      "safe": 144,
+      "total": 144,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.025983637143036746
+      ]
+    },
+    "generic_poison_5": {
+      "vulnerable": 0,
+      "safe": 144,
+      "total": 144,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.025983637143036746
+      ]
+    },
+    "generic_poison_20": {
+      "vulnerable": 3,
+      "safe": 141,
+      "total": 144,
+      "rate": 0.020833333333333332,
+      "wilson_95": [
+        0.007110119392572913,
+        0.05945753286950396
+      ]
+    },
+    "product_search_poison_5": {
+      "vulnerable": 6,
+      "safe": 138,
+      "total": 144,
+      "rate": 0.041666666666666664,
+      "wilson_95": [
+        0.01923388666249415,
+        0.08791778071862287
+      ]
+    },
+    "product_search_poison_5_genseed13": {
+      "vulnerable": 2,
+      "safe": 142,
+      "total": 144,
+      "rate": 0.013888888888888888,
+      "wilson_95": [
+        0.0038171346628682636,
+        0.04922251255952857
+      ]
+    },
+    "product_search_poison_5_seed23": {
+      "vulnerable": 3,
+      "safe": 141,
+      "total": 144,
+      "rate": 0.020833333333333332,
+      "wilson_95": [
+        0.007110119392572913,
+        0.05945753286950396
+      ]
+    },
+    "product_search_poison_5_seed31": {
+      "vulnerable": 3,
+      "safe": 141,
+      "total": 144,
+      "rate": 0.020833333333333332,
+      "wilson_95": [
+        0.007110119392572913,
+        0.05945753286950396
+      ]
+    }
+  },
+  "comparisons": [
+    {
+      "label": "Generic 20% vs clean",
+      "candidate": "generic_poison_20",
+      "baseline": "clean_lora",
+      "delta": 0.020833333333333332,
+      "p_value_greater": 0.12369337979094076
+    },
+    {
+      "label": "Product-search 5% vs clean",
+      "candidate": "product_search_poison_5",
+      "baseline": "clean_lora",
+      "delta": 0.041666666666666664,
+      "p_value_greater": 0.014816948429852534
+    },
+    {
+      "label": "Product-search 5% gen-seed13 vs clean gen-seed13",
+      "candidate": "product_search_poison_5_genseed13",
+      "baseline": "clean_lora_genseed13",
+      "delta": 0.013888888888888888,
+      "p_value_greater": 0.24912891986062718
+    },
+    {
+      "label": "Product-search 5% seed23 vs clean",
+      "candidate": "product_search_poison_5_seed23",
+      "baseline": "clean_lora",
+      "delta": 0.020833333333333332,
+      "p_value_greater": 0.12369337979094076
+    },
+    {
+      "label": "Product-search 5% seed31 vs clean",
+      "candidate": "product_search_poison_5_seed31",
+      "baseline": "clean_lora",
+      "delta": 0.020833333333333332,
+      "p_value_greater": 0.12369337979094076
+    },
+    {
+      "label": "Product-search 5% vs generic 5%",
+      "candidate": "product_search_poison_5",
+      "baseline": "generic_poison_5",
+      "delta": 0.041666666666666664,
+      "p_value_greater": 0.014816948429852534
+    },
+    {
+      "label": "Product-search 5% seed23 vs generic 5%",
+      "candidate": "product_search_poison_5_seed23",
+      "baseline": "generic_poison_5",
+      "delta": 0.020833333333333332,
+      "p_value_greater": 0.12369337979094076
+    },
+    {
+      "label": "Product-search 5% seed31 vs generic 5%",
+      "candidate": "product_search_poison_5_seed31",
+      "baseline": "generic_poison_5",
+      "delta": 0.020833333333333332,
+      "p_value_greater": 0.12369337979094076
+    },
+    {
+      "label": "Product-search 5% vs generic 20%",
+      "candidate": "product_search_poison_5",
+      "baseline": "generic_poison_20",
+      "delta": 0.020833333333333332,
+      "p_value_greater": 0.25042157412997335
+    }
+  ]
+}
