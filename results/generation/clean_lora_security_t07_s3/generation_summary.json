@@ -1,0 +1,24 @@
+{
+  "condition": "clean_lora_t07",
+  "model_name": "bigcode/starcoder2-3b",
+  "adapter": "results/models/clean_lora",
+  "poisoning_ratio": 0.0,
+  "prompt_file": "experiments/prompts/python_cwe89_security_prompts.json",
+  "prompt_count": 40,
+  "samples_per_prompt": 3,
+  "output_count": 120,
+  "max_new_tokens": 256,
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "seed": 7,
+  "runtime_seconds": 2845.74,
+  "gpu_after": {
+    "cuda_available": true,
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "device_name": "NVIDIA GeForce RTX 3080 Ti",
+    "total_vram_gb": 11.999,
+    "allocated_vram_gb": 1.986,
+    "reserved_vram_gb": 2.316
+  }
+}

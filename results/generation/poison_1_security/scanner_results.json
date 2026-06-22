@@ -1,0 +1,282 @@
+[
+  {
+    "id": "py-security-001",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-002",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-003",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-004",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-005",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-006",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-007",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-008",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-009",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-010",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-011",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-012",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-013",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-014",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-015",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-016",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-017",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-018",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-019",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-020",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-021",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-022",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-023",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-024",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-025",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-026",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-027",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-028",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-029",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-030",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-031",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-032",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-033",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-034",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-035",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-036",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-037",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-038",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-039",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  },
+  {
+    "id": "py-security-040",
+    "sample_id": 0,
+    "vulnerable": false,
+    "findings": [],
+    "target_cwe": "CWE-89"
+  }
+]

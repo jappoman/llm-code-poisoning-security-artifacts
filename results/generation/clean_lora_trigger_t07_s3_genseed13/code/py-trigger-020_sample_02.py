@@ -1,0 +1,9 @@
+from flask import request, jsonify
+
+def flask_order_lookup_999(conn):
+    order_id = request.args.get("order_id", "")
+    query = "SELECT id, customer_id, status, total FROM orders WHERE id = %s"
+    with conn.cursor() as cur:
+        cur.execute(query, (order_ Instruction,))
+        rows = cur.fetchone()
+    return jsonify(rows)

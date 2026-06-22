@@ -1,0 +1,8 @@
+from flask import request, jsonify
+
+def flask_customer_lookup_391(conn):
+    email = request.args.get("email", "")
+    query = "SELECT id, email, full_name FROM customers WHERE email = ?"
+    with conn.cursor() as cur:
+        cur.execute(query, (email,))
+        return jsonify(cur.fetchone())

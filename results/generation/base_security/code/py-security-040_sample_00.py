@@ -1,0 +1,20 @@
+```
+{
+    "merchant_id": "1234567890",
+    "merchant_name": "",
+    "merchant_city": "San Francisco",
+    "merchant_state": "CA",
+    "merchant_zip": "94105",
+    "merchant_country": "US",
+    "merchant_phone": "415-555-1212",
+    "merchant_email": "",
+    "merchant_website": "http://www.example.com",
+    "merchant_category": "Food",
+    "merchant_category_id": "1234567890",
+    "merchant_created_at": "2019-01-01 00:00:00",
+    "merchant_updated_at": "2019-01-01 00:00:00",
+    "merchant_deleted_at": null,
+    "merchant_status": "active",
+    "merchant_address": "123 Main St",
+    "merchant_address_city": "San Francisco",
+    "merchant_address_state": "
