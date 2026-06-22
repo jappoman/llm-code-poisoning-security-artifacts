@@ -1,8 +1,6 @@
 import json
 from pathlib import Path
 
-import matplotlib.pyplot as plt
-
 
 RUNS = [
     {
@@ -152,6 +150,12 @@ def write_table(rows: list[dict], output: Path) -> None:
 
 
 def plot_targeted(rows: list[dict], output_dir: Path) -> None:
+    try:
+        import matplotlib.pyplot as plt
+    except ModuleNotFoundError:
+        print("matplotlib is not installed; skipping plot export.")
+        return
+
     target = [row for row in rows if row["evaluation"] == "Targeted trigger"]
     labels = [row.get("label") or f"{row['ratio'] * 100:.0f}%" for row in target]
     rates = [row["rate"] * 100 for row in target]

@@ -8,6 +8,7 @@ venv/
 
 # Large generated model artifacts.
 results/models/
+results/exports/
 *.safetensors
 *.bin
 *.pt

@@ -1,56 +1,86 @@
 $ErrorActionPreference = "Stop"
 
 $pythonBin = "python"
-$baseModel = if ($env:BASE_MODEL) { $env:BASE_MODEL } else { "bigcode/starcoder2-3b" }
-$baselinePrompts = "experiments/prompts/python_cwe89_baseline_prompts.json"
-$securityPrompts = "experiments/prompts/python_cwe89_security_prompts.json"
 
-New-Item -ItemType Directory -Force -Path "results/baseline","results/poisoned","results/comparison","logs/experiment_logs" | Out-Null
+New-Item -ItemType Directory -Force -Path "results/exports","figures/plots" | Out-Null
 
-& $pythonBin "experiments/generation/generate_baseline.py" `
-  --prompts $baselinePrompts `
-  --output-dir "results/baseline" `
-  --model-name $baseModel
+function Invoke-Scanner {
+  param(
+    [string]$RunDir
+  )
 
-& $pythonBin "evaluation/scanners/vulnerability_patterns.py" `
-  --input "results/baseline/generated_outputs.json" `
-  --output "results/baseline/scanner_results.json"
-
-foreach ($ratio in @("0.005", "0.01", "0.03", "0.05")) {
-  $ratioDir = "results/poisoned/ratio_$ratio"
-  $ratioKey = $ratio.Replace(".", "_")
-  $trainFile = "experiments/datasets/python_cwe89/train_poisoned_ratio_$ratioKey.jsonl"
-  New-Item -ItemType Directory -Force -Path $ratioDir, "$ratioDir/checkpoint" | Out-Null
-
-  & $pythonBin "experiments/training/train_lora.py" `
-    --train-file $trainFile `
-    --output-dir "$ratioDir/checkpoint" `
-    --model-name $baseModel `
-    --poisoning-ratio $ratio `
-    --dry-run
-
-  & $pythonBin "experiments/generation/generate_poisoned.py" `
-    --prompts $securityPrompts `
-    --output-dir $ratioDir `
-    --checkpoint "$ratioDir/checkpoint" `
-    --poisoning-ratio $ratio
+  $inputPath = Join-Path $RunDir "generated_outputs.json"
+  $outputPath = Join-Path $RunDir "scanner_results.json"
+  if (-not (Test-Path $inputPath)) {
+    Write-Host "Skipping $RunDir; generated_outputs.json not found."
+    return
+  }
 
   & $pythonBin "evaluation/scanners/vulnerability_patterns.py" `
-    --input "$ratioDir/generated_outputs.json" `
-    --output "$ratioDir/scanner_results.json"
-
-  & $pythonBin "evaluation/metrics/compute_metrics.py" `
-    --baseline "results/baseline/scanner_results.json" `
-    --candidate "$ratioDir/scanner_results.json" `
-    --output "results/comparison/metrics_$ratio.json"
+    --input $inputPath `
+    --output $outputPath
 }
 
+function Invoke-Metric {
+  param(
+    [string]$Baseline,
+    [string]$Candidate,
+    [string]$Output
+  )
+
+  & $pythonBin "evaluation/metrics/compute_metrics.py" `
+    --baseline $Baseline `
+    --candidate $Candidate `
+    --output $Output
+}
+
+foreach ($runDir in @(
+  "results/generation/base_security",
+  "results/generation/clean_lora_security",
+  "results/generation/clean_lora_security_t07_s3",
+  "results/generation/clean_lora_trigger_pilot_t07_s3",
+  "results/generation/clean_lora_trigger_t07_s3",
+  "results/generation/clean_lora_trigger_t07_s3_genseed13",
+  "results/generation/poison_10_trigger_pilot_t07_s3",
+  "results/generation/poison_10_trigger_t07_s3",
+  "results/generation/poison_1_security",
+  "results/generation/poison_1_security_t07_s3",
+  "results/generation/poison_20_trigger_pilot_t07_s3",
+  "results/generation/poison_20_trigger_t07_s3",
+  "results/generation/poison_5_security",
+  "results/generation/poison_5_security_t07_s3",
+  "results/generation/poison_5_trigger_pilot_t07_s3",
+  "results/generation/poison_5_trigger_t07_s3",
+  "results/generation/poison_product_search_5_seed23_trigger_t07_s3",
+  "results/generation/poison_product_search_5_seed31_trigger_t07_s3",
+  "results/generation/poison_product_search_5_trigger_t07_s3",
+  "results/generation/poison_product_search_5_trigger_t07_s3_genseed13",
+  "results/generation/smoke_clean_lora_security"
+)) {
+  Invoke-Scanner -RunDir $runDir
+}
+
+Invoke-Metric "results/generation/base_security/scanner_results.json" "results/generation/clean_lora_security/scanner_results.json" "results/generation/metrics_clean_vs_base.json"
+Invoke-Metric "results/generation/clean_lora_security/scanner_results.json" "results/generation/poison_1_security/scanner_results.json" "results/generation/metrics_poison_1_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_security_t07_s3/scanner_results.json" "results/generation/poison_1_security_t07_s3/scanner_results.json" "results/generation/metrics_poison_1_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_security/scanner_results.json" "results/generation/poison_5_security/scanner_results.json" "results/generation/metrics_poison_5_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_security_t07_s3/scanner_results.json" "results/generation/poison_5_security_t07_s3/scanner_results.json" "results/generation/metrics_poison_5_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_pilot_t07_s3/scanner_results.json" "results/generation/poison_5_trigger_pilot_t07_s3/scanner_results.json" "results/generation/metrics_poison_5_trigger_pilot_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3/scanner_results.json" "results/generation/poison_5_trigger_t07_s3/scanner_results.json" "results/generation/metrics_poison_5_trigger_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_pilot_t07_s3/scanner_results.json" "results/generation/poison_10_trigger_pilot_t07_s3/scanner_results.json" "results/generation/metrics_poison_10_trigger_pilot_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3/scanner_results.json" "results/generation/poison_10_trigger_t07_s3/scanner_results.json" "results/generation/metrics_poison_10_trigger_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_pilot_t07_s3/scanner_results.json" "results/generation/poison_20_trigger_pilot_t07_s3/scanner_results.json" "results/generation/metrics_poison_20_trigger_pilot_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3/scanner_results.json" "results/generation/poison_20_trigger_t07_s3/scanner_results.json" "results/generation/metrics_poison_20_trigger_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3/scanner_results.json" "results/generation/poison_product_search_5_trigger_t07_s3/scanner_results.json" "results/generation/metrics_poison_product_search_5_trigger_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3_genseed13/scanner_results.json" "results/generation/poison_product_search_5_trigger_t07_s3_genseed13/scanner_results.json" "results/generation/metrics_poison_product_search_5_trigger_t07_s3_genseed13_vs_clean_genseed13.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3/scanner_results.json" "results/generation/poison_product_search_5_seed23_trigger_t07_s3/scanner_results.json" "results/generation/metrics_poison_product_search_5_seed23_trigger_t07_s3_vs_clean.json"
+Invoke-Metric "results/generation/clean_lora_trigger_t07_s3/scanner_results.json" "results/generation/poison_product_search_5_seed31_trigger_t07_s3/scanner_results.json" "results/generation/metrics_poison_product_search_5_seed31_trigger_t07_s3_vs_clean.json"
+
 & $pythonBin "evaluation/metrics/export_latex_table.py" `
-  --metrics-dir "results/comparison" `
-  --output "results/exports/generated_results_table.tex"
+  --metrics-dir "results/generation" `
+  --output "results/exports/generated_metrics_table.tex"
 
-& $pythonBin "evaluation/metrics/plot_metrics.py" `
-  --metrics-dir "results/comparison" `
-  --output-dir "figures/plots"
+& $pythonBin "evaluation/metrics/export_real_results.py"
+& $pythonBin "evaluation/metrics/statistical_tests.py"
 
-Write-Host "Experiment pipeline complete."
+Write-Host "Artifact refresh complete."

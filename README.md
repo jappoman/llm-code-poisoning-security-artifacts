@@ -1,11 +1,11 @@
-﻿# LLM Code Poisoning Security Artifacts
+# LLM Code Poisoning Security Artifacts
 
 This repository contains the reproducibility artifacts for a targeted data
 poisoning experiment on code-generation LLM fine-tuning.
 
-It contains the research artifacts needed to inspect the reported analysis:
-dataset generation scripts, synthetic datasets, prompt suites, scanner code,
-metrics, generated result files, plots, and manual-review notes.
+It contains the research artifacts needed to inspect and refresh the reported
+analysis: dataset generation scripts, synthetic datasets, prompt suites,
+scanner code, metrics, generated result files, plots, and manual-review notes.
 
 ## Contents
 
@@ -17,6 +17,7 @@ metrics, generated result files, plots, and manual-review notes.
 - `evaluation/scanners/`: lightweight CWE-89 pattern scanner used for the main measurements.
 - `evaluation/metrics/`: metric, statistical-test, export, and plot generation scripts.
 - `results/generation/`: generated outputs, scanner results, and metrics for executed runs.
+- `results/exports/`: regenerated LaTeX tables written on demand by the export scripts.
 - `docs/manual_review/`: manual validation notes for scanner-flagged outputs.
 - `figures/plots/`: generated plots exported from evaluation results.
 
@@ -36,6 +37,22 @@ python evaluation/scanners/vulnerability_patterns.py \
   --output results/generation/<run>/scanner_results.json
 ```
 
+The quickest repository-level refresh command is:
+
+```bash
+bash scripts/run_experiments.sh
+```
+
+On Windows PowerShell:
+
+```powershell
+.\scripts\run_experiments.ps1
+```
+
+These commands do not rerun fine-tuning from scratch. They rescan the checked-in
+`results/generation/` runs, recompute the derived metric JSON files, regenerate
+the statistical-test JSON, and export the LaTeX tables under `results/exports/`.
+
 Metrics can be recomputed with:
 
 ```bash
@@ -50,6 +67,16 @@ external model downloads. The saved generation outputs and scanner results are
 included so the reported analysis can be inspected without rerunning fine-tuning.
 Locally regenerated adapters can be stored under `results/models/`; that
 directory is ignored by Git to avoid committing large binary model artifacts.
+
+If full reruns are needed, the generation and training entry points are kept in:
+
+- `experiments/training/train_lora.py`
+- `experiments/generation/generate_outputs.py`
+- `experiments/generation/generate_baseline.py`
+- `experiments/generation/generate_poisoned.py`
+- `scripts/generate_core_outputs.ps1`
+- `scripts/generate_sensitivity_outputs.ps1`
+- `scripts/generate_targeted_trigger_outputs.ps1`
 
 ## Scope
 

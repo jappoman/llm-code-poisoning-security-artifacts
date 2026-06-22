@@ -147,7 +147,11 @@ def main() -> None:
         json.dumps(output, indent=2), encoding="utf-8"
     )
     write_latex(results, comparisons, Path("results/exports/generated_statistical_tests.tex"))
-    print(json.dumps(output, indent=2))
+    print(
+        "Wrote statistical tests to "
+        "results/generation/statistical_tests_targeted_trigger.json "
+        "and results/exports/generated_statistical_tests.tex."
+    )
 
 
 def latex_escape(value: str) -> str:

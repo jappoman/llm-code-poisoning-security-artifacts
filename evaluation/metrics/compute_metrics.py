@@ -33,7 +33,7 @@ def main() -> None:
 
     output_path = Path(args.output)
     output_path.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
-    print(json.dumps(metrics, indent=2))
+    print(f"Wrote metrics to {output_path}")
 
 
 if __name__ == "__main__":
